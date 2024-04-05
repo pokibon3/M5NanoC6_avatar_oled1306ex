@@ -1,0 +1,32 @@
+// for SSD1306
+#include <lgfx/v1/panel/Panel_SSD1306.hpp>
+#include <M5Unified.h>
+#include "lgfx.h"
+#include <Avatar.h>
+using namespace m5avatar;
+Avatar avatar;
+LGFX_SSD1306_72x40 lcd; 
+
+void setup(void) {
+    auto cfg = M5.config();
+//    cfg.external_display.unit_glass2 = true;
+    M5.begin(cfg);
+    lcd.init();
+    avatar.setScale(0.3);
+    avatar.setPosition(-100, -124);
+    avatar.init();
+//    lcd.startWrite();
+
+    lcd.setBrightness(255);
+    lcd.clear();
+    lcd.setRotation(2);
+//    lcd.setCursor(28, 24);
+    for (int i = 0; i < 2; i++) {
+        lcd.printf("%1d:Hello\n", i + 1);
+    }
+}
+
+void loop(void) {
+//    lcd.println("Hello SSD1306");
+    delay(100);
+}
